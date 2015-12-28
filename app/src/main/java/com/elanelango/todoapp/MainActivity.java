@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void populateArrayItems() {
         readItems();
-        aToDoAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, todoItems);
+        aToDoAdapter = new ArrayAdapter<String>(this, R.layout.edit_text_view, R.id.tvEntry, todoItems);
     }
 
     private void readItems() {
