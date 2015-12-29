@@ -1,15 +1,12 @@
 package com.elanelango.todoapp;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -22,7 +19,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<String> todoItems;
-    ArrayAdapter<String> aToDoAdapter;
+    TodoArrayAdapter aToDoAdapter;
     ListView lvItems;
     EditText etEditText;
 
@@ -43,11 +40,24 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        /*lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.e("onitemclick", "Clicked!!");
+                todoItems.set(position, "XXX");
+                aToDoAdapter.notifyDataSetChanged();
+
+                //EditTodoView itemView = (EditTodoView) lvItems.getChildAt(position);
+                //itemView.editMode();
+            }
+        });*/
     }
 
     public void populateArrayItems() {
         readItems();
-        aToDoAdapter = new ArrayAdapter<String>(this, R.layout.edit_text_view, R.id.tvEntry, todoItems);
+        aToDoAdapter = new TodoArrayAdapter(this, R.layout.edit_todo_view, R.id.tvEntry, todoItems);
     }
 
     private void readItems() {
@@ -55,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         File file = new File(filesDir, "todo.txt");
         try {
             todoItems = new ArrayList<String>(FileUtils.readLines(file));
-        } catch(IOException e){
+        } catch (IOException e) {
 
         }
     }
@@ -65,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         File file = new File(filesDir, "todo.txt");
         try {
             FileUtils.writeLines(file, todoItems);
-        } catch(IOException e){
+        } catch (IOException e) {
 
         }
     }

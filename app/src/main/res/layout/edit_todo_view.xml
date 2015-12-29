@@ -45,5 +45,6 @@
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
         android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
         android:paddingRight="?android:attr/listPreferredItemPaddingRight"
-        android:minHeight="?android:attr/listPreferredItemHeightSmall"/>
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"
+        android:focusable="false" />
 </RelativeLayout>
