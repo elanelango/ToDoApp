@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
     ArrayList<String> todoItems;
     TodoArrayAdapter aToDoAdapter;
     ListView lvItems;
@@ -40,19 +39,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-        /*lvItems.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.e("onitemclick", "Clicked!!");
-                todoItems.set(position, "XXX");
-                aToDoAdapter.notifyDataSetChanged();
-
-                //EditTodoView itemView = (EditTodoView) lvItems.getChildAt(position);
-                //itemView.editMode();
-            }
-        });*/
     }
 
     public void populateArrayItems() {
@@ -70,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void writeItems() {
+    public void writeItems() {
         File filesDir = getFilesDir();
         File file = new File(filesDir, "todo.txt");
         try {
@@ -78,28 +64,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
 
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public void onAddItem(View view) {

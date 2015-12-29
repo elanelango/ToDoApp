@@ -23,7 +23,7 @@ public class TodoArrayAdapter extends ArrayAdapter<String> {
     public View getView(int position, View convertView, ViewGroup parent) {
         EditTodoView editTodoView = null;
         if (convertView == null) {
-            editTodoView = new EditTodoView(context);
+            editTodoView = new EditTodoView(context, this);
         } else {
             editTodoView = (EditTodoView) convertView;
         }
@@ -33,5 +33,11 @@ public class TodoArrayAdapter extends ArrayAdapter<String> {
         editTodoView.reset();
 
         return editTodoView;
+    }
+
+    public void replace(String original, String replace) {
+        int position = getPosition(original);
+        remove(original);
+        insert(replace, position);
     }
 }

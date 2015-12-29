@@ -15,12 +15,16 @@ import android.widget.TextView;
  */
 public class EditTodoView extends RelativeLayout {
 
+    private Context context;
     private TextView tvEntry;
     private EditText etEditEntry;
     private ImageView ivDone;
+    private TodoArrayAdapter todoAdapter;
 
-    public EditTodoView(Context context) {
+    public EditTodoView(Context context, final TodoArrayAdapter todoAdapter) {
         super(context);
+        this.context = context;
+        this.todoAdapter = todoAdapter;
         LayoutInflater layoutInflater = ((Activity) context).getLayoutInflater();
         layoutInflater.inflate(R.layout.edit_todo_view, this);
         this.tvEntry = (TextView) findViewById(R.id.tvEntry);
@@ -39,6 +43,10 @@ public class EditTodoView extends RelativeLayout {
 
             @Override
             public void onClick(View v) {
+                String original = tvEntry.getText().toString();
+                String replace = etEditEntry.getText().toString();
+                todoAdapter.replace(original, replace);
+                ((MainActivity) EditTodoView.this.context).writeItems();
                 EditTodoView.this.reset();
             }
         });
