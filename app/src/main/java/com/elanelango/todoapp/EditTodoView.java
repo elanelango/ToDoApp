@@ -88,7 +88,7 @@ public class EditTodoView extends RelativeLayout {
             ((MainActivity) EditTodoView.this.context).writeItems();
             EditTodoView.this.reset();
         } else {
-            Toast.makeText(context, "ToDo item can't be empty", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "ToDo item can't be empty!", Toast.LENGTH_SHORT).show();
             etEditEntry.requestFocus();
         }
     }
