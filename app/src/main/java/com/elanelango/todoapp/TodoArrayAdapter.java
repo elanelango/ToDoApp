@@ -30,7 +30,6 @@ public class TodoArrayAdapter extends ArrayAdapter<String> {
 
         String todoText = getItem(position);
         editTodoView.setText(todoText);
-        editTodoView.reset();
 
         return editTodoView;
     }

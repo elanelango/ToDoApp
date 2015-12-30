@@ -3,12 +3,14 @@ package com.elanelango.todoapp;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.apache.commons.io.FileUtils;
 
@@ -30,6 +32,18 @@ public class MainActivity extends AppCompatActivity {
         lvItems = (ListView) findViewById(R.id.lvItems);
         lvItems.setAdapter(aToDoAdapter);
         etEditText = (EditText) findViewById(R.id.etEditText);
+
+        etEditText.setOnKeyListener(new EditText.OnKeyListener() {
+
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (event.getAction() == KeyEvent.ACTION_DOWN &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER ||
+                                keyCode == KeyEvent.KEYCODE_DPAD_CENTER))
+                    addItem();
+                return false;
+            }
+        });
         lvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -66,9 +80,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void addItem(){
+        String text = etEditText.getText().toString();
+        if (!text.isEmpty()) {
+            aToDoAdapter.add(etEditText.getText().toString());
+            etEditText.setText("");
+            writeItems();
+        } else {
+            Toast.makeText(this, "ToDo item can't be empty", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public void onAddItem(View view) {
-        aToDoAdapter.add(etEditText.getText().toString());
-        etEditText.setText("");
-        writeItems();
+        addItem();
     }
 }
