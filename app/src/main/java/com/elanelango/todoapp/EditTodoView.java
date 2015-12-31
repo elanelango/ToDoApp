@@ -49,7 +49,7 @@ public class EditTodoView extends RelativeLayout {
             }
         });
 
-        etEditEntry.setOnKeyListener(new EditText.OnKeyListener() {
+        /*etEditEntry.setOnKeyListener(new EditText.OnKeyListener() {
 
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -60,7 +60,7 @@ public class EditTodoView extends RelativeLayout {
 
                 return false;
             }
-        });
+        });*/
 
     }
 

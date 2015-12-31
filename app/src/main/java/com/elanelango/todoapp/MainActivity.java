@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         etEditText = (EditText) findViewById(R.id.etEditText);
 
-        //Handle Enter keypress in add item EditText
+        /*//Handle Enter keypress in add item EditText
         etEditText.setOnKeyListener(new EditText.OnKeyListener() {
 
             @Override
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                     addItem();
                 return false;
             }
-        });
+        });*/
 
         //Delete item when it's long pressed
         lvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
