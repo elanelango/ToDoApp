@@ -22,9 +22,9 @@ and the visibility is reversed making the TextView visible again.
 The custom TodoArrayAdapter handles the creation of EditTodoView for the ListView.
 
 After implementing this and reading about the issues I faced while implementing this, it looks like embedding
-a EditText inside a ListItem is not a great idea. Things do work as expected after I did
-android:windowSoftInputMode="adjustPan" in the manifest xml with a slight UX awkwardness of the top items
-getting moved out when the soft keyboard appears.
+a EditText inside a ListView is not a great idea. Things do work as expected after I did
+android:windowSoftInputMode="adjustPan" in the manifest xml, with a slight UX awkwardness of the top items
+getting moved out of view when the soft keyboard appears.
 
 Known Issue:
 If you add the same text as multiple entries and tried editing one of those entries that is further
