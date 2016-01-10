@@ -2,12 +2,10 @@ package com.elanelango.todoapp;
 
 import android.app.Activity;
 import android.content.Context;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,9 +19,13 @@ public class EditTodoView extends RelativeLayout {
     private TextView tvEntry;
     private EditText etEditEntry;
     private ImageView ivDone;
-    private TodoArrayAdapter todoAdapter;
+    private TodoCursorAdapter todoAdapter;
 
-    public EditTodoView(Context context, final TodoArrayAdapter todoAdapter) {
+    public EditTodoView(Context context) {
+        super(context);
+    }
+
+    public EditTodoView(Context context, final TodoCursorAdapter todoAdapter) {
         super(context);
         this.context = context;
         this.todoAdapter = todoAdapter;
@@ -49,19 +51,6 @@ public class EditTodoView extends RelativeLayout {
             }
         });
 
-        /*etEditEntry.setOnKeyListener(new EditText.OnKeyListener() {
-
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_DOWN &&
-                        (keyCode == KeyEvent.KEYCODE_ENTER ||
-                                keyCode == KeyEvent.KEYCODE_DPAD_CENTER))
-                    saveEdit();
-
-                return false;
-            }
-        });*/
-
     }
 
     public void reset() {
@@ -75,6 +64,11 @@ public class EditTodoView extends RelativeLayout {
         etEditEntry.setVisibility(VISIBLE);
         ivDone.setVisibility(VISIBLE);
     }
+
+    public String getText() {
+        return this.tvEntry.getText().toString();
+    }
+
     public void setText(String text) {
         this.tvEntry.setText(text);
         this.etEditEntry.setText(text);
@@ -84,8 +78,8 @@ public class EditTodoView extends RelativeLayout {
         String replace = etEditEntry.getText().toString();
         if(!replace.isEmpty()) {
             String original = tvEntry.getText().toString();
-            todoAdapter.replace(original, replace);
-            ((MainActivity) EditTodoView.this.context).writeItems();
+            TodoItem.updateItem(original, replace);
+            todoAdapter.refreshAfterChange();
             EditTodoView.this.reset();
         } else {
             Toast.makeText(context, "ToDo item can't be empty!", Toast.LENGTH_SHORT).show();
