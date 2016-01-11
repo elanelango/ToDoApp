@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -17,7 +18,9 @@ public class EditTodoView extends RelativeLayout {
 
     private Context context;
     private TextView tvEntry;
+    private TextView tvDays;
     private EditText etEditEntry;
+    private Button btDays;
     private ImageView ivDone;
     private TodoCursorAdapter todoAdapter;
 
@@ -32,7 +35,9 @@ public class EditTodoView extends RelativeLayout {
         LayoutInflater layoutInflater = ((Activity) context).getLayoutInflater();
         layoutInflater.inflate(R.layout.edit_todo_view, this);
         tvEntry = (TextView) findViewById(R.id.tvEntry);
+        tvDays = (TextView) findViewById(R.id.tvDays);
         etEditEntry = (EditText) findViewById(R.id.etEditEntry);
+        btDays = (Button) findViewById(R.id.btDays);
         ivDone = (ImageView) findViewById(R.id.ivDone);
 
         tvEntry.setOnClickListener(new TextView.OnClickListener() {
@@ -55,13 +60,17 @@ public class EditTodoView extends RelativeLayout {
 
     public void reset() {
         etEditEntry.setVisibility(INVISIBLE);
+        btDays.setVisibility(INVISIBLE);
         ivDone.setVisibility(INVISIBLE);
         tvEntry.setVisibility(VISIBLE);
+        tvDays.setVisibility(VISIBLE);
     }
 
     public void editMode() {
         tvEntry.setVisibility(INVISIBLE);
+        tvDays.setVisibility(INVISIBLE);
         etEditEntry.setVisibility(VISIBLE);
+        btDays.setVisibility(VISIBLE);
         ivDone.setVisibility(VISIBLE);
     }
 
