@@ -29,21 +29,15 @@ public class TodoCursorAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         // Extract properties from cursor
         String text = cursor.getString(cursor.getColumnIndexOrThrow("text"));
-        Date dueDate = new Date(cursor.getLong(cursor.getColumnIndexOrThrow("due_date")));
+        long dueMilliSeconds = cursor.getLong(cursor.getColumnIndexOrThrow("due_date"));
 
         // Populate fields with extracted properties
         EditTodoView editTodoView = (EditTodoView) view;
-        editTodoView.setText(text);
+        editTodoView.setData(text, dueMilliSeconds);
     }
 
     public void refreshAfterChange() {
         this.changeCursor(TodoItem.fetchResultCursor());
         this.notifyDataSetChanged();
     }
-
-   /* public void replace(TodoItem original, TodoItem replace) {
-        int position = getPosition(original);
-        remove(original);
-        insert(replace, position);
-    }*/
 }

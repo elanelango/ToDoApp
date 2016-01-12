@@ -12,15 +12,26 @@
     tools:context="com.elanelango.todoapp.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <Button
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add"
-        android:id="@+id/btnAddItem"
+        android:id="@+id/ivAddItem"
         android:onClick="onAddItem"
         android:layout_alignBottom="@+id/etEditText"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/etEditText"
+        android:src="@drawable/btn_add" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivCalendar"
+        android:layout_toLeftOf="@+id/ivAddItem"
+        android:layout_alignParentBottom="true"
+        android:layout_alignTop="@+id/ivAddItem"
+        android:onClick="onAddDue"
+        android:src="@drawable/btn_calendar" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -29,7 +40,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_above="@+id/btnAddItem"
+        android:layout_above="@+id/ivAddItem"
         android:clickable="true" />
 
     <EditText
@@ -39,7 +50,8 @@
         android:hint="@string/add_item"
         android:singleLine="true"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/btnAddItem"
         android:layout_alignLeft="@+id/lvItems"
-        android:layout_alignStart="@+id/lvItems" />
+        android:layout_alignStart="@+id/lvItems"
+        android:layout_toLeftOf="@+id/ivCalendar"
+        android:layout_toStartOf="@+id/ivCalendar" />
 </RelativeLayout>

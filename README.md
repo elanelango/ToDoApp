@@ -1,6 +1,11 @@
 # ToDoApp
 My first Android App done as a part of CodePath course registration
 
+01/12/2016 update:
+App is updated with a feature to add due dates.
+
+![Demo GIF](https://raw.githubusercontent.com/elanelango/ToDoApp/master/demo2.gif)
+
 The goal is to add editing feature to a todo list app.
 
 I decided to go with inline editing of an item as opposed to editing an item in a separate activity.
